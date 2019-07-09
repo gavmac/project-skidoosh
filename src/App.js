@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import ReactDOM, { render } from 'react-dom';
-
-import logo from './logo.svg';
-import './App.css';
-
-import Hiro from './Hiro'
+import Routes from './Routes';
+import Header from './components/Header';
 
 class App extends Component {
     render() {
         return (
-            <Hiro />
+            <div>
+                <Header />
+                <Routes />
+            </div>
         );
     }
 }
-
 
 export default App;
