@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 
 const { GraphQLObjectType, GraphQLString,
-    GraphQLID, GraphQLInt, GraphQLSchema } = graphql;
+    GraphQLID, GraphQLInt, GraphQLSchema, buildSchema } = graphql;
 
 //Schema defines data on the Graph like object types(book type), relation between
 //these object types and descibes how it can reach into the graph to interact with
@@ -21,6 +21,8 @@ const BookType = new GraphQLObjectType({
         pages: { type: GraphQLInt }
     })
 });
+
+const schema = buildSchema(``)
 
 //RootQuery describe how users can use the graph and grab data.
 //E.g Root query to get all authors, get all books, get a particular book
