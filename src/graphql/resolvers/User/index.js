@@ -1,14 +1,18 @@
-import User from "../../../server/models/User";
+// import User from "../../../server/models/User";
+
+const User = [
+    { id: 1, name: "John Doe", email: "test@gmail.com", age: 21 },
+    { id: 2, name: "Jane Doe" , email: "test@gmail.com", age: 22 }
+];
 
 export default {
     Query: {
-        user: async (parent, { _id }, context, info) => {
+        user: async ({ _id }) => {
             return await User.findOne({ _id }).exec();
         },
-        users: async (parent, args, context, info) => {
-            const users = await User.find({})
-                .populate()
-                .exec();
+        users: async () => {
+            const users = await User.find({}).toArray();
+                // .exec();
 
             return users.map(u => ({
                 _id: u._id.toString(),
