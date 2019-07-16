@@ -1,25 +1,56 @@
-import Server from "../graphql";
-import mongoose from "mongoose";
+const express               = require('express');
+const { ApolloServer, gql } = require('apollo-server-express');
+require('../config');
 
-const express = require('express');
-const db = "mongodb://gavmac:282820g@ds147746.mlab.com:47746/jeerio";
+const { User } = require('./models/User');
 
-// Connect to MongoDB with Mongoose.
-mongoose
-    .connect(
-        db,
-        {
-            useCreateIndex: true,
-            useNewUrlParser: true
+const typeDefs = gql`
+    type User {
+        id: ID!
+        userName: String
+        email: String
+    }
+    type Query {
+        getUsers: [User]
+    }
+    type Mutation {
+        addUser(userName: String!, email: String!): User
+    }
+`;
+
+const resolvers = {
+    Query: {
+        getUsers: async () => await User.find({}).exec()
+    },
+    Mutation: {
+        addUser: async (_, args) => {
+            try {
+                let response = await User.create(args);
+                return response;
+            } catch(e) {
+                return e.message;
+            }
         }
-    )
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.log(err));
+    }
+};
 
+// GraphQL: Schema
+const server = new ApolloServer({
+    typeDefs: typeDefs,
+    resolvers: resolvers,
+
+    playground: {
+        endpoint: `http://localhost:4000/graphql`,
+        settings: {
+            'editor.theme': 'light'
+        }
+    }
+});
 
 const app = express();
-Server.applyMiddleware({ app });
+server.applyMiddleware({ app });
 
-app.listen({ port: 3000 }, () =>
-    console.log(`🚀 Server ready at http://localhost:3000${Server.graphqlPath}`)
+app.listen({ port: 4000 }, () =>
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
 );
+

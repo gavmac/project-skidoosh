@@ -9,6 +9,7 @@
     "express": "^4.17.0",
     "express-graphql": "^0.8.0",
     "merge-graphql-schemas": "^1.5.8",
+    "mongodb": "^3.2.7",
     "mongoose": "^5.5.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

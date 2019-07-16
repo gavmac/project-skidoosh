@@ -1,26 +1,13 @@
-import mongoose from "mongoose";
-import { ObjectID } from "mongodb";
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const Schema = mongoose.Schema;
-
-ObjectID.prototype.valueOf = function() {
-    return this.toString();
-};
-
-const UserSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    age: {
-        type: Number,
-        required: true
-    },
+const userSchema = new Schema({
+    userName: String,
+    email: String
 });
 
-export default mongoose.model("User", UserSchema);
+const User = mongoose.model('user', userSchema);
+
+module.exports = {
+    User
+};

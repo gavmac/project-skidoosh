@@ -1,7 +1,7 @@
-const commonConfig = {
-    env: process.env.NODE_ENV || 'development',
-    port: parseInt(process.env.PORT, 10)  || 5000,
-    corsDomain: process.env.CORS_DOMAIN || '*'
-};
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
-export default commonConfig;
+const url = 'mongodb://gavmac:282820g@ds147746.mlab.com:47746/jeerio';
+
+mongoose.connect(url, { useNewUrlParser: true });
+mongoose.connection.once('open', () => console.log(`Connected to mongo at ${url}`));
