@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AFrameRenderer, Marker } from 'react-web-ar';
 
-import cynth from '../cynth.png'
+import cynth from '../../cynth.png'
 
 class Hiro extends Component {
     render() {

@@ -1,43 +1,16 @@
-const express               = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
-require('../config');
+import mongoose from 'mongoose';
+import schema from './graphql';
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
 
-const { User } = require('./models/User');
+const url = 'mongodb://gavmac:282820g@ds147746.mlab.com:47746/jeerio';
 
-const typeDefs = gql`
-    type User {
-        id: ID!
-        userName: String
-        email: String
-    }
-    type Query {
-        getUsers: [User]
-    }
-    type Mutation {
-        addUser(userName: String!, email: String!): User
-    }
-`;
-
-const resolvers = {
-    Query: {
-        getUsers: async () => await User.find({}).exec()
-    },
-    Mutation: {
-        addUser: async (_, args) => {
-            try {
-                let response = await User.create(args);
-                return response;
-            } catch(e) {
-                return e.message;
-            }
-        }
-    }
-};
+mongoose.connect(url, { useNewUrlParser: true });
+mongoose.connection.once('open', () => console.log(`Connected to mongo at ${url}`))
 
 // GraphQL: Schema
 const server = new ApolloServer({
-    typeDefs: typeDefs,
-    resolvers: resolvers,
+    schema,
 
     playground: {
         endpoint: `http://localhost:4000/graphql`,
@@ -51,6 +24,5 @@ const app = express();
 server.applyMiddleware({ app });
 
 app.listen({ port: 4000 }, () =>
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+    console.log(`🚀 Server ready at http://localhost:4000`)
 );
-
