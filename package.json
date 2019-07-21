@@ -5,9 +5,11 @@
   "dependencies": {
     "@material-ui/core": "^4.2.0",
     "@material-ui/icons": "^4.2.1",
+    "bcryptjs": "^2.4.3",
     "esm": "^3.2.25",
     "express": "^4.17.0",
     "express-graphql": "^0.8.0",
+    "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.5.8",
     "mongodb": "^3.2.7",
     "mongoose": "^5.5.9",
