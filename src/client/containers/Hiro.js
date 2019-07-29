@@ -24,8 +24,6 @@ class Hiro extends Component {
     }
 }
 
-
-
 export default Hiro;
 
 

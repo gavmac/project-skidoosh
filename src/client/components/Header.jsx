@@ -37,9 +37,6 @@ function Header () {
                         Project-Skidoosh
                     </Typography>
                     <nav>
-                        <Link variant="button" color="textPrimary" href="/" className={classes.link}>
-                            Home
-                        </Link>
                         <Link variant="button" color="textPrimary" href="/login" className={classes.link}>
                             Login
                         </Link>
@@ -48,6 +45,9 @@ function Header () {
                         </Link>
                         <Link variant="button" color="textPrimary" href="/register" className={classes.link}>
                             Register
+                        </Link>
+                        <Link variant="button" color="textPrimary" href="/logout" className={classes.link}>
+                            Logout
                         </Link>
                     </nav>
                 </Toolbar>

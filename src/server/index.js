@@ -1,34 +1,20 @@
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import schema from './graphql';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 
-const url = 'mongodb://gavmac:282820g@ds147746.mlab.com:47746/jeerio';
+
+dotenv.config({ silent: true })
+const url = process.env.mongoURI;
 
 mongoose.connect(url, { useNewUrlParser: true });
-mongoose.connection.once('open', () => console.log(`Connected to mongo at ${url}`))
+mongoose.connection.once('open', () => console.log(`Connected to mongo at ${url}`));
+
 
 // GraphQL: Schema
 const server = new ApolloServer({
     schema,
-
-    context: ({ req }) => {
-        // get the user token from the headers
-        const token = req.headers.authorization || '';
-
-        // try to retrieve a user with the token
-        const user = getUser(token);
-
-        // add the user to the context
-        return { user };
-    },
-
-    // context: request => {
-    //     return {
-    //         ...request,
-    //         prisma,
-    //     }
-    // },
 
     playground: {
         endpoint: `http://localhost:4000/graphql`,

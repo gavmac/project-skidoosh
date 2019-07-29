@@ -1,8 +1,11 @@
+import React from 'react';
+import gql from 'graphql-tag';
+import client from '../apollo';
+import { Formik } from 'formik';
 
-import React, { useEffect, useState } from 'react';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -15,11 +18,6 @@ import Container from '@material-ui/core/Container';
 
 
 const useStyles = makeStyles(theme => ({
-    '@global': {
-        body: {
-            backgroundColor: theme.palette.common.white,
-        },
-    },
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -39,15 +37,33 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function AuthLogin() {
+const SUBMIT_LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      jwt
+    }
+  }
+`;
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+const AuthLogin = () => {
     const classes = useStyles();
+
+    const handleSubmit = async (values) => {
+        try {
+            await client.mutate({
+                variables: values,
+                mutation: SUBMIT_LOGIN,
+            }).then(data => {
+                localStorage.setItem('token', data.data.login.jwt);
+            });
+            window.location.href = "/dashboard";
+        } catch (errors) {
+            return errors.message
+        }
+    };
 
     return (
         <Container component="main" maxWidth="xs">
-            <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
@@ -55,117 +71,63 @@ function AuthLogin() {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        onChange = {(event,newValue) => setUsername(newValue)}
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        onChange = {(event,newValue) => setUsername(newValue)}
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Sign In
-                    </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </form>
+
+                <Formik
+                    onSubmit={values => handleSubmit(values)}
+                >
+                    {({ values, handleChange, handleSubmit, errors, touched }) => (
+                        <form className={classes.form} noValidate>
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="email"
+                                onChange = {handleChange}
+                                autoFocus
+                            />
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange = {handleChange}
+                            />
+                            <FormControlLabel
+                                control={<Checkbox value="remember" color="primary" />}
+                                label="Remember me"
+                            />
+                            <Button
+                                onClick={handleSubmit}
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                            >
+                                Sign In
+                            </Button>
+                            <Grid container>
+                                <Grid item>
+                                    <Link href="#" variant="body2">
+                                        {"Don't have an account? Sign Up"}
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </form>
+                    )}
+                </Formik>
             </div>
         </Container>
     );
 }
-
-
-
-// import React, { useEffect, useState } from 'react';
-//
-// import TextField from '@material-ui/core/TextField';
-// import Button from '@material-ui/core/Button';
-// import Container from '@material-ui/core/Container';
-// import Grid from '@material-ui/core/Grid';
-
-
-// function AuthLogin () {
-//     const [username, setUsername] = useState('');
-//     const [password, setPassword] = useState('');
-//
-//     const style = {
-//         margin: 15,
-//     };
-//
-//
-//
-//     return (
-//         <div>
-//             <Container fixed>
-//                 <Grid container spacing={3}>
-//                     <Grid item xs={12}>
-//                         <TextField
-//                             variant="outlined"
-//                             margin="normal"
-//                             required
-//                             fullWidth
-//                             hintText="Enter your Username"
-//                             floatingLabelText="Username"
-//                             onChange = {(event,newValue) => setUsername(newValue)}
-//                             autoComplete="current-password"
-//                         />
-//                     </Grid>
-//                     <br/>
-//                     <Grid item xs={12}>
-//                         <TextField
-//                             variant="outlined"
-//                             margin="normal"
-//                             required
-//                             fullWidth
-//                             type="password"
-//                             hintText="Enter your Password"
-//                             floatingLabelText="Password"
-//                             onChange = {(event,newValue) => setPassword(newValue)}
-//                         />
-//                     </Grid>
-//                     <br/>
-//                     <Button label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}>Submit</Button>
-//                 </Grid>
-//             </Container>
-//         </div>
-//     );
-// }
 
 export default AuthLogin;
