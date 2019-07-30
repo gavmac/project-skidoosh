@@ -36,6 +36,7 @@
     "graphql": "^14.4.2",
     "graphql-tools": "^4.0.5"
   },
+  "proxy": "http://localhost:${process.env.PORT}",
   "scripts": {
     "start": "node -r esm src/server",
     "heroku-postbuild": "npm run build",
