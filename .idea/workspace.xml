@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4819094a-130d-4cc5-9448-f4d82045c29d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -212,7 +212,7 @@
           </split-first>
           <split-second>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file pinned="false" current-in-tab="true">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/server/index.js">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="399">
@@ -220,6 +220,15 @@
                       <folding>
                         <element signature="e#0#28#0" expanded="true" />
                       </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/static.json">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="90">
+                      <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
                     </state>
                   </provider>
                 </entry>
@@ -326,6 +335,7 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/src/client/apollo/index.js" />
         <option value="$PROJECT_DIR$/src/server/index.js" />
+        <option value="$PROJECT_DIR$/static.json" />
       </list>
     </option>
   </component>
@@ -345,30 +355,6 @@
             <path>
               <item name="project-skidoosh" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-skidoosh" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-skidoosh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-skidoosh" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-skidoosh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-skidoosh" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-skidoosh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-skidoosh" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="apollo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-skidoosh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-skidoosh" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -496,7 +482,7 @@
       <workItem from="1564064973434" duration="32414000" />
       <workItem from="1564184052499" duration="28276000" />
       <workItem from="1564358450482" duration="20466000" />
-      <workItem from="1564438046053" duration="17792000" />
+      <workItem from="1564438046053" duration="17931000" />
     </task>
     <task id="LOCAL-00001" summary="Route - front-end login">
       <created>1562706490958</created>
@@ -565,7 +551,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254800000" />
+    <option name="totallyTimeSpent" value="254939000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -878,6 +864,13 @@
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
