@@ -17,7 +17,7 @@ const server = new ApolloServer({
     schema,
 
     playground: {
-        endpoint: `http://localhost:${PORT}/graphql`,
+        endpoint: `http://localhost:4000/graphql`,
         settings: {
             'editor.theme': 'light'
         }
@@ -27,6 +27,6 @@ const server = new ApolloServer({
 const app = express();
 server.applyMiddleware({ app });
 
-app.listen({ PORT}, () =>
+app.listen( process.env.PORT || 4000, () =>
     console.log(`🚀 Server ready at http://localhost:${PORT}`)
 );
