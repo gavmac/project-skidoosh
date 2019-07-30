@@ -50,8 +50,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/package.json">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="509">
-                      <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+                    <state relative-caret-position="139">
+                      <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
                     </state>
                   </provider>
                 </entry>
@@ -482,7 +482,7 @@
       <workItem from="1564064973434" duration="32414000" />
       <workItem from="1564184052499" duration="28276000" />
       <workItem from="1564358450482" duration="20466000" />
-      <workItem from="1564438046053" duration="10855000" />
+      <workItem from="1564438046053" duration="10985000" />
     </task>
     <task id="LOCAL-00001" summary="Route - front-end login">
       <created>1562706490958</created>
@@ -551,7 +551,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247863000" />
+    <option name="totallyTimeSpent" value="247993000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -862,8 +862,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+        <state relative-caret-position="139">
+          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
         </state>
       </provider>
     </entry>
