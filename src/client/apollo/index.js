@@ -4,13 +4,12 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 
 const token = localStorage.getItem('token');
 
-const { NODE_ENV, REACT_APP_GRAPHQL_URI } = process.env;
-const isNotProduction = NODE_ENV !== 'production';
-const uri = isNotProduction ? 'http://localhost:4000/graphql' : REACT_APP_GRAPHQL_URI;
+const isNotProduction = process.env.NODE_ENV !== 'production';
+const uri = isNotProduction ? 'http://localhost:4000/graphql' : `${process.env.REACT_APP_GRAPHQL_URI}`;
 
 // 2
 const Link = createUploadLink({
-    uri: {uri},
+    uri: uri,
     headers: {
         authorization: token ? `Bearer ${token}` : ''
     }
