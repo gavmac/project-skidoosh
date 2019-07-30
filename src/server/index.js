@@ -34,7 +34,7 @@ app.listen( process.env.PORT || 4000, () =>
 
 if (process.env.NODE_ENV === 'production') {
     // Express will serve up production assets
-    const staticFiles = express.static(path.join(__dirname, '../../build'));
+    const staticFiles = express.static(path.join(__dirname, 'build'));
     app.use(staticFiles);
 
     // Express serve up index.html file if it doesn't recognize route
