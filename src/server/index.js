@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import schema from './graphql';
 import express from 'express';
+import path from 'path'
 import { ApolloServer } from 'apollo-server-express';
 
 dotenv.config({ silent: true })
@@ -30,3 +31,7 @@ server.applyMiddleware({ app });
 app.listen( process.env.PORT || 4000, () =>
     console.log(`🚀 Server ready at http://localhost:${PORT}`)
 );
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/public/index.html'))
+});
