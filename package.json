@@ -31,7 +31,7 @@
     "three": "0.87.1"
   },
   "scripts": {
-    "start": "node -r esm src/server",
+    "start": "nodemon -r esm src/server",
     "heroku-postbuild": "npm run build",
     "start:web": "react-scripts start",
     "start:server": "node -r esm src/server",
