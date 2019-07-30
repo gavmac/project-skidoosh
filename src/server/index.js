@@ -17,7 +17,7 @@ const server = new ApolloServer({
     schema,
 
     playground: {
-        endpoint: `http://localhost:4000/graphql`,
+        endpoint: `http://localhost:${PORT}/graphql`,
         settings: {
             'editor.theme': 'light'
         }
