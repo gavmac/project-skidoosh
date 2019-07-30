@@ -49,8 +49,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/package.json">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="451">
-                      <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+                    <state relative-caret-position="60">
+                      <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
                     </state>
                   </provider>
                 </entry>
@@ -468,7 +468,7 @@
       <workItem from="1564064973434" duration="32414000" />
       <workItem from="1564184052499" duration="28276000" />
       <workItem from="1564358450482" duration="20466000" />
-      <workItem from="1564438046053" duration="10093000" />
+      <workItem from="1564438046053" duration="10215000" />
     </task>
     <task id="LOCAL-00001" summary="Route - front-end login">
       <created>1562706490958</created>
@@ -537,7 +537,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247101000" />
+    <option name="totallyTimeSpent" value="247223000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -845,8 +845,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+        <state relative-caret-position="60">
+          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
         </state>
       </provider>
     </entry>
