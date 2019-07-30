@@ -1,8 +1,62 @@
 import User from "../../../models/User";
+import { createWriteStream } from 'fs';
+import * as mkdirp from 'mkdirp';
+import lowdb from 'lowdb';
+import FileSync from 'lowdb/adapters/FileSync';
 
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { AuthenticationError } from 'apollo-server-express';
+
+const uploadDir = './uploads';
+const db = new lowdb(new FileSync('db.json'));
+
+// Seed an empty DB
+db.defaults({ uploads: [] }).write()
+
+// Ensure upload directory exists
+mkdirp.sync(uploadDir)
+
+const storeUpload = async ({ stream, filename }) => {
+    const path = `${uploadDir}/image.jpg`;
+
+    return new Promise((resolve, reject) =>
+        stream
+            .pipe(createWriteStream(path))
+            .on('finish', () => resolve({ path }))
+            .on('error', reject),
+    )
+};
+
+const dbSize = () => {
+    return (
+    db.get('uploads')
+        .size()
+        .value()
+    )
+}
+
+
+const recordFile = file => {
+
+    if (dbSize() === 1) {
+        db.get('uploads')
+            .find({path: "./uploads/image.jpg"})
+            .assign(file)
+            .write();
+    } else {
+        db.get('uploads')
+            .push(file)
+            .last()
+            .write();
+    }
+}
+
+const processUpload = async upload => {
+    const { stream, filename, mimetype, encoding } = await upload;
+    const { id, path } = await storeUpload({ stream, filename });
+    return recordFile({ id, filename, mimetype, encoding, path });
+};
 
 
 const getUserId = context => {
@@ -15,12 +69,14 @@ const getUserId = context => {
     }
 
     throw new AuthenticationError('you must be logged in');
-}
+};
 
 
 
 export default {
     Query: {
+        getUpload: () => db.get('uploads').value(),
+
         getUsers: async () => {
             const users = await User.find({}).exec();
             return users.map(user => user.toObject());
@@ -31,6 +87,23 @@ export default {
         }
     },
     Mutation: {
+        uploadFile: (obj, { file }) => processUpload(file),
+
+
+        // uploadFile: async (root, { file }) => {
+        //     const { stream, filename, mimetype, encoding } = await file;
+        //     const bucket = await mongoUpload();
+        //     const uploadStream = bucket.openUploadStream('test');
+        //     await new Promise((resolve, reject) => {
+        //         stream
+        //             .pipe(uploadStream)
+        //             .on("error", reject)
+        //             .on("finish", resolve);
+        //     });
+        //     return { _id: uploadStream.id, filename, mimetype, encoding }
+        // },
+
+
         addUser: async (_, args, context) => {
             try {
                 return await User.create(args);

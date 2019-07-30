@@ -4,12 +4,12 @@ import schema from './graphql';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 
-
 dotenv.config({ silent: true })
-const url = process.env.mongoURI;
+const uri = process.env.mongoURI;
+const PORT = process.env.PORT || 4000;
 
-mongoose.connect(url, { useNewUrlParser: true });
-mongoose.connection.once('open', () => console.log(`Connected to mongo at ${url}`));
+mongoose.connect(uri, { useNewUrlParser: true });
+mongoose.connection.once('open', () => console.log(`Connected to mongo at ${uri}`));
 
 
 // GraphQL: Schema
@@ -17,7 +17,7 @@ const server = new ApolloServer({
     schema,
 
     playground: {
-        endpoint: `http://localhost:4000/graphql`,
+        endpoint: `http://localhost:${PORT}/graphql`,
         settings: {
             'editor.theme': 'light'
         }
@@ -27,6 +27,6 @@ const server = new ApolloServer({
 const app = express();
 server.applyMiddleware({ app });
 
-app.listen({ port: 4000 }, () =>
-    console.log(`🚀 Server ready at http://localhost:4000`)
+app.listen({ PORT}, () =>
+    console.log(`🚀 Server ready at http://localhost:${PORT}`)
 );
