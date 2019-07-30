@@ -9,6 +9,7 @@ export default gql `
       email: String
       password: String
       jwt: String
+      
     }
     
     type File {
