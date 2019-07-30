@@ -49,8 +49,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/package.json">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="403">
-                      <caret line="45" column="35" lean-forward="true" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+                    <state relative-caret-position="313">
+                      <caret line="43" column="35" lean-forward="true" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
                     </state>
                   </provider>
                 </entry>
@@ -346,13 +346,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="project-skidoosh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-skidoosh" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="graphql" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -479,7 +472,7 @@
       <workItem from="1564064973434" duration="32414000" />
       <workItem from="1564184052499" duration="28276000" />
       <workItem from="1564358450482" duration="20466000" />
-      <workItem from="1564438046053" duration="13434000" />
+      <workItem from="1564438046053" duration="13735000" />
     </task>
     <task id="LOCAL-00001" summary="Route - front-end login">
       <created>1562706490958</created>
@@ -548,7 +541,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="250442000" />
+    <option name="totallyTimeSpent" value="250743000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -859,8 +852,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="45" column="35" lean-forward="true" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+        <state relative-caret-position="313">
+          <caret line="43" column="35" lean-forward="true" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
         </state>
       </provider>
     </entry>
