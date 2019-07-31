@@ -1,10 +1,10 @@
 {
   "uploads": [
     {
-      "filename": "441155d6-db3b-4067-ae5c-9c61a32176d4 (1).JPG",
+      "filename": "me.jpg",
       "mimetype": "image/jpeg",
       "encoding": "7bit",
-      "path": "./uploads/image.jpg"
+      "path": "src/uploads/image.jpg"
     }
   ]
 }
