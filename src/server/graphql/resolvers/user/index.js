@@ -8,7 +8,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { AuthenticationError } from 'apollo-server-express';
 
-const uploadDir = 'src/uploads';
+const uploadDir = './uploads';
 const db = new lowdb(new FileSync('db.json'));
 
 // Seed an empty DB
@@ -75,7 +75,7 @@ const getUserId = context => {
 
 export default {
     Query: {
-        // getUpload: () => db.get('uploads').value(),
+        getUpload: () => db.get('uploads').value(),
 
         getUsers: async () => {
             const users = await User.find({}).exec();
