@@ -28,14 +28,15 @@
     <script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
     <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
 
-
     <script>
       // Component to change to a sequential image on click using the ids of the a-assets-item.
       AFRAME.registerComponent('profile-listener', {
         init: function () {
           var lastIndex = -1;
           var images = ['#userProfile', '#userProfile'];
-          window.addEventListener('click touchstart', function (event) {
+
+          ['click','ontouchstart'].forEach( function(evt) {
+          window.addEventListener(evt, function (event) {
             var box = document.getElementById("profile");
             lastIndex = (lastIndex + 1) % images.length;
 
@@ -46,6 +47,7 @@
             box.setAttribute('material', `src: ${images[lastIndex]}`);
             box.setAttribute('visible', 'src: true');
           });
+        });
         }
       });
 
@@ -53,14 +55,16 @@
         init: function () {
           var lastIndex = -1;
           var visible = ['false', 'true'];
-          window.addEventListener('click touchstart', function (event) {
-            var box = document.getElementById("profile-info");
-            lastIndex = (lastIndex + 1) % visible.length;
-            if(visible[lastIndex] === 'true') {
-              document.querySelector('#profile-info').emit('profileInfoAnimation');
-            }
+          ['click','ontouchstart'].forEach( function(evt) {
+            window.addEventListener(evt, function (event) {
+              var box = document.getElementById("profile-info");
+              lastIndex = (lastIndex + 1) % visible.length;
+              if (visible[lastIndex] === 'true') {
+                document.querySelector('#profile-info').emit('profileInfoAnimation');
+              }
 
-            box.setAttribute('visible', `${visible[lastIndex]}`)
+              box.setAttribute('visible', `${visible[lastIndex]}`)
+            });
           });
         }
       });
@@ -69,11 +73,13 @@
         init: function () {
           var lastIndex = -1;
           var position = ['0.1 0.1 0.5', '0.1 0.1 0.5', '0.1 0.1 0.5'];
-          window.addEventListener('click touchstart', function (event) {
-            lastIndex = (lastIndex + 1) % position.length;
-            var cylinderUserPhoto = document.getElementById("arrow-icon");
+          ['click','ontouchstart'].forEach( function(evt) {
+            window.addEventListener(evt, function (event) {
+              lastIndex = (lastIndex + 1) % position.length;
+              var cylinderUserPhoto = document.getElementById("arrow-icon");
 
-            cylinderUserPhoto.setAttribute('position', `${position[lastIndex]}`);
+              cylinderUserPhoto.setAttribute('position', `${position[lastIndex]}`);
+            });
           });
         }
       });
