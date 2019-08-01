@@ -3,3 +3,4 @@ export { default as AuthLogout } from './AuthLogout';
 export { default as Hiro } from './Hiro';
 export { default as AuthRegister } from './AuthRegister';
 export { default as Dashboard } from './Dashboard';
+export { default as Railcard } from './profile/Profile';

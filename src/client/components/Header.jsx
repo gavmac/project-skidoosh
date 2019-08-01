@@ -46,6 +46,9 @@ function Header () {
                         <Link variant="button" color="textPrimary" href="/register" className={classes.link}>
                             Register
                         </Link>
+                        <Link variant="button" color="textPrimary" href="/railcard" className={classes.link}>
+                            Railcard
+                        </Link>
                         <Link variant="button" color="textPrimary" href="/logout" className={classes.link}>
                             Logout
                         </Link>
