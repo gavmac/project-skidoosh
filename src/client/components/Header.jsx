@@ -37,17 +37,14 @@ function Header () {
                         Project-Skidoosh
                     </Typography>
                     <nav>
-                        <Link variant="button" color="textPrimary" href="/login" className={classes.link}>
-                            Login
-                        </Link>
-                        <Link variant="button" color="textPrimary" href="/hiro" className={classes.link}>
-                            Hiro
-                        </Link>
-                        <Link variant="button" color="textPrimary" href="/register" className={classes.link}>
-                            Register
-                        </Link>
-                        <Link variant="button" color="textPrimary" href="/railcard" className={classes.link}>
-                            Railcard
+                        {/*<Link variant="button" color="textPrimary" href="/hiro" className={classes.link}>*/}
+                        {/*    Hiro*/}
+                        {/*</Link>*/}
+                        {/*<Link variant="button" color="textPrimary" href="/register" className={classes.link}>*/}
+                        {/*    Register*/}
+                        {/*</Link>*/}
+                        <Link variant="button" color="textPrimary" href="/profile" className={classes.link}>
+                            View AR profile
                         </Link>
                         <Link variant="button" color="textPrimary" href="/logout" className={classes.link}>
                             Logout
