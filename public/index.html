@@ -35,7 +35,7 @@
           var lastIndex = -1;
           var images = ['#userProfile', '#userProfile'];
 
-          ['click','ontouchstart', 'touchmove', 'touchend', 'touchstart'].forEach( function(evt) {
+          ['click', 'touchstart'].forEach( function(evt) {
           window.addEventListener(evt, function (event) {
             var box = document.getElementById("profile");
             lastIndex = (lastIndex + 1) % images.length;
@@ -55,7 +55,7 @@
         init: function () {
           var lastIndex = -1;
           var visible = ['false', 'true'];
-          ['click','ontouchstart', 'touchmove', 'touchend', 'touchstart'].forEach( function(evt) {
+          ['click','touchstart'].forEach( function(evt) {
             window.addEventListener(evt, function (event) {
               var box = document.getElementById("profile-info");
               lastIndex = (lastIndex + 1) % visible.length;
@@ -73,7 +73,7 @@
         init: function () {
           var lastIndex = -1;
           var position = ['0.1 0.1 0.5', '0.1 0.1 0.5', '0.1 0.1 0.5'];
-          ['click','ontouchstart', 'touchmove', 'touchend', 'touchstart'].forEach( function(evt) {
+          ['click', 'touchstart'].forEach( function(evt) {
             window.addEventListener(evt, function (event) {
               lastIndex = (lastIndex + 1) % position.length;
               var cylinderUserPhoto = document.getElementById("arrow-icon");
