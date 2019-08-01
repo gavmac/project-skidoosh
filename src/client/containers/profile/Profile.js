@@ -13,6 +13,7 @@ class Profile extends Component {
                 <Marker parameters={{
                     preset: 'pattern',
                     type: 'pattern',
+                    minConfidence: 0.3,
                     patternUrl: 'https://raw.githubusercontent.com/gavmac/project-skidoosh/master/pattern-marker.patt',
                     url: 'https://raw.githubusercontent.com/gavmac/project-skidoosh/master/pattern-marker.patt'
                 }}>
