@@ -57,10 +57,10 @@ class Profile extends Component {
                         <a-entity
                             id="arrow-icon"
                             arrow-icon-listener
-                            scale="0.6 0.6 0.6"
+                            scale="0.4 0.4 0.4"
                             cursor="fuse: true; fuseTimeout: 500"
                             position="0 1.5 0.5"
-                            geometry="primitive: box; height: 0.03; rotation: 90 0 0;"
+                            geometry="primitive: box; height: 0.03; depth: 0; rotation: 90 0 0;"
                             material="shader: flat; src: #arrowIcon" />
 
                     </a-entity>
