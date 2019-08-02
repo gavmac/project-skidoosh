@@ -3,7 +3,7 @@ import { AFrameRenderer, Marker } from 'react-web-ar';
 
 import userProfile from './profile-a.jpg';
 import profileInfo from './profile-b.jpg';
-import arrowIcon from './arrow-right.png';
+import arrowIcon from './arrow.png';
 
 class Profile extends Component {
     render() {
@@ -28,7 +28,7 @@ class Profile extends Component {
                             id="profile"
                             profile-listener
                             cursor="fuse: true; fuseTimeout: 500"
-                            position="0.1 -1.5 0"
+                            position="0 -1.5 0"
                             geometry="primitive: box; height: 0.1; depth: 1.5; rotation: 90 0 0;"
                             material="shader: flat;"
                             visible="false">
@@ -57,9 +57,10 @@ class Profile extends Component {
                         <a-entity
                             id="arrow-icon"
                             arrow-icon-listener
+                            scale="0.6 0.6 0.6"
                             cursor="fuse: true; fuseTimeout: 500"
-                            position="0.1 0.1 0.5"
-                            geometry="primitive: cylinder; height: 0.1; radius: 0.15"
+                            position="0 1.5 0.5"
+                            geometry="primitive: box; height: 0.03; rotation: 90 0 0;"
                             material="shader: flat; src: #arrowIcon" />
 
                     </a-entity>
