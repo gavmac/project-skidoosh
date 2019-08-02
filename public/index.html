@@ -72,7 +72,7 @@
       AFRAME.registerComponent('arrow-icon-listener', {
         init: function () {
           var lastIndex = -1;
-          var position = ['-0.5 1.5 0.5', '-0.5 1.5 0.5', '-0.5 1.5 0.5'];
+          var position = ['0 1 0.5', '0 1 0.5', '0 1 0.5'];
           ['click', 'touchstart'].forEach( function(evt) {
             window.addEventListener(evt, function (event) {
               lastIndex = (lastIndex + 1) % position.length;
