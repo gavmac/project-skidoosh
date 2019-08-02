@@ -28,30 +28,30 @@ class Profile extends Component {
                             id="profile"
                             profile-listener
                             cursor="fuse: true; fuseTimeout: 500"
-                            position="1 0 0"
+                            position="0.1 -1.5 0"
                             geometry="primitive: box; height: 0.1; depth: 1.5; rotation: 90 0 0;"
                             material="shader: flat;"
                             visible="false">
                             <a-animation attribute="position"
                                          dur="3000"
                                          begin="profileAnimation"
-                                         from="0 0 0"
-                                         to="1 0 0"/>
+                                         from="-1.5 0 0"
+                                         to="-0.5 -1.5 0"/>
                         </a-entity>
 
                         <a-entity
                             id="profile-info"
                             profile-info-listener
                             cursor="fuse: true; fuseTimeout: 500"
-                            position="2 0 0"
+                            position="0 -1.5 0"
                             geometry="primitive: box; height: 0.1; depth: 1.5; rotation: 90 0 0;"
                             material="shader: flat; src: #profileInfo"
                             visible="false">
                             <a-animation attribute="position"
                                          dur="3000"
                                          begin="profileInfoAnimation"
-                                         from="1 1 0"
-                                         to="2 0.01 0"/>
+                                         from="-1 -0.5 0"
+                                         to="0.5 -1.5 0"/>
                         </a-entity>
 
                         <a-entity
