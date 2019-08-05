@@ -8,7 +8,7 @@ import arrowIcon from './arrow.png';
 class Profile extends Component {
     render() {
         return (
-            <AFrameRenderer arToolKit={{ sourceType: 'webcam' }}>
+            <AFrameRenderer arToolKit={{ sourceType: 'webcam', patternRatio: '0.80' }}>
 
                 <Marker parameters={{
                     preset: 'pattern',
@@ -17,7 +17,6 @@ class Profile extends Component {
                     patternUrl: 'https://raw.githubusercontent.com/gavmac/project-skidoosh/master/pattern-marker.patt',
                     url: 'https://raw.githubusercontent.com/gavmac/project-skidoosh/master/pattern-marker.patt'
                 }}>
-                    {/*<Marker parameters={{preset: 'hiro'}}>*/}
 
                     <a-assets-item img id="userProfile" src={userProfile} />
                     <a-assets-item img id="profileInfo" src={profileInfo} />
