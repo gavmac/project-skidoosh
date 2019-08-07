@@ -88,7 +88,7 @@ const DashBoard = () => {
 
                             <Typography component="h4" variant="p">
                                 I'm also working on allowing people to create there own augmented reality experience.
-                                There is some support for this if you are working locally, but for now that all that offered.
+                                There is some support for this if you are working locally, but for now my friends thats all thats on offer.
                                 <br /><br />
                             </Typography>
                             <Dropzone
