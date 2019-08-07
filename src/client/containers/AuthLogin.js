@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import client from '../apollo';
 import { Formik } from 'formik';
+import * as Yup from 'yup'
 
 
 import Avatar from '@material-ui/core/Avatar';
@@ -37,18 +38,25 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const UserSchema = Yup.object().shape({
+    email: Yup.string()
+        .email('Invalid email address')
+        .required('Required Email'),
+    password: Yup.string()
+        .required('Required Password'),
+});
+
+
 const SUBMIT_LOGIN = gql`
   mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      jwt
-    }
+    login(email: $email, password: $password){ jwt }
   }
 `;
 
 const AuthLogin = () => {
     const classes = useStyles();
 
-    const handleSubmit = async (values) => {
+    const handleSubmit = async (values, { setSubmitting, setErrors }) => {
         try {
             await client.mutate({
                 variables: values,
@@ -57,8 +65,10 @@ const AuthLogin = () => {
                 localStorage.setItem('token', data.data.login.jwt);
             });
             window.location.href = "/dashboard";
-        } catch (errors) {
-            return errors.message
+        } catch (e) {
+            const errors = e.graphQLErrors.map(e => e.message)
+            setSubmitting(false);
+            setErrors({email: 'Incorrect email or password', password: 'Incorrect email or password', form: errors})
         }
     };
 
@@ -66,18 +76,20 @@ const AuthLogin = () => {
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar> bitches must do the following below
+                    <LockOutlinedIcon/>
+                </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
 
                 <Formik
-                    onSubmit={values => handleSubmit(values)}
+                    onSubmit={handleSubmit}
+                    validationSchema={UserSchema}
                 >
-                    {({ values, handleChange, handleSubmit, errors, touched }) => (
-                        <form className={classes.form} noValidate>
+                    {({values, handleChange, handleSubmit, errors, touched, isSubmitting}) => (
+                        <form className={classes.form}>
                             <TextField
+                                error={errors.email}
                                 variant="outlined"
                                 margin="normal"
                                 required
@@ -86,10 +98,14 @@ const AuthLogin = () => {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
-                                onChange = {handleChange}
+                                onChange={handleChange}
                                 autoFocus
                             />
+                            {errors.email && touched.email ?
+                                (<div>{errors.email}</div>) :
+                                null}
                             <TextField
+                                error={errors.password}
                                 variant="outlined"
                                 margin="normal"
                                 required
@@ -99,10 +115,13 @@ const AuthLogin = () => {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                                onChange = {handleChange}
+                                onChange={handleChange}
                             />
+                            {errors.password && touched.password ?
+                                (<div>{errors.password}</div>) :
+                                null}
                             <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
+                                control={<Checkbox value="remember" color="primary"/>}
                                 label="Remember me"
                             />
                             <Button
@@ -117,7 +136,7 @@ const AuthLogin = () => {
                             </Button>
                             <Grid container>
                                 <Grid item>
-                                    <Link href="#" variant="body2">
+                                    <Link href="/register" variant="body2">
                                         {"Don't have an account? Sign Up"}
                                     </Link>
                                 </Grid>

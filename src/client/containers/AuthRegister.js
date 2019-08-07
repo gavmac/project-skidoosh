@@ -2,12 +2,11 @@ import React from 'react';
 import gql from 'graphql-tag';
 import client from '../apollo';
 import { Formik } from 'formik';
+import * as Yup from 'yup'
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -36,6 +35,18 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const UserSchema = Yup.object().shape({
+    name: Yup.string()
+        .min(2, 'Must be longer than 2 characters')
+        .max(20, 'Nice try, nobody has a first name that long')
+        .required('Required'),
+    email: Yup.string()
+        .email('Invalid email address')
+        .required('Required Email'),
+    password: Yup.string()
+        .required('Required Password'),
+});
+
 const SUBMIT_SIGNUP = gql`
   mutation signup($name: String!, $email: String!, $password: String!) {
     signup(name: $name, email: $email, password: $password) {
@@ -49,7 +60,7 @@ const AuthRegister = () => {
 
     const classes = useStyles();
 
-    const handleSubmit = async (values) => {
+    const handleSubmit = async (values, { setSubmitting, setErrors }) => {
         try {
             await client.mutate({
                     variables: values,
@@ -58,9 +69,10 @@ const AuthRegister = () => {
                 localStorage.setItem('token', data.data.signup.jwt);
             }) ;
             window.location.href = "/dashboard";
-        } catch (errors) {
-            return errors.message
-        }
+        } catch (e) {
+            const errors = e.graphQLErrors.map(e => e.message)
+            setSubmitting(false);
+            setErrors({ email: ' ', password: ' ', form: errors })}
     };
 
     return (
@@ -74,13 +86,15 @@ const AuthRegister = () => {
                 </Typography>
 
                 <Formik
-                    onSubmit={values => handleSubmit(values)}
+                    onSubmit={handleSubmit}
+                    validationSchema={UserSchema}
                 >
-                    {({ values, handleChange, handleSubmit, errors, touched }) => (
+                    {({ values, handleChange, handleSubmit, errors, touched, isSubmitting }) => (
                         <form className={classes.form} noValidate>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <TextField
+                                        error={errors.name}
                                         autoComplete="fname"
                                         name="name"
                                         variant="outlined"
@@ -91,9 +105,13 @@ const AuthRegister = () => {
                                         autoFocus
                                         onChange={handleChange}
                                     />
+                                    {errors.name && touched.name ?
+                                        (<div>{errors.name}</div>) :
+                                        null}
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
+                                        error={errors.email}
                                         variant="outlined"
                                         required
                                         fullWidth
@@ -103,6 +121,9 @@ const AuthRegister = () => {
                                         autoComplete="email"
                                         onChange={handleChange}
                                     />
+                                    {errors.email && touched.email ?
+                                        (<div>{errors.form}</div>) :
+                                        null}
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -116,6 +137,9 @@ const AuthRegister = () => {
                                         autoComplete="current-password"
                                         onChange={handleChange}
                                     />
+                                    {errors.password && touched.password ?
+                                        (<div>{errors.password}</div>) :
+                                        null}
                                 </Grid>
                             </Grid>
                             <Button

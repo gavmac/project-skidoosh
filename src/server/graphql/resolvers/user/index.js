@@ -50,7 +50,7 @@ const recordFile = file => {
             .last()
             .write();
     }
-}
+};
 
 const processUpload = async upload => {
     const { stream, filename, mimetype, encoding } = await upload;
@@ -60,8 +60,7 @@ const processUpload = async upload => {
 
 
 const getUserId = context => {
-
-    const authorization = context.headers.authorization || ''
+    const authorization = context.req.headers.authorization || ''
     if (authorization) {
         const token = authorization.split(' ')[1]
         const user_id = jwt.verify(token, process.env.TOKEN_SECRET);
@@ -82,13 +81,13 @@ export default {
             return users.map(user => user.toObject());
         },
         currentUser: async (root, args, context) => {
-            const user = context.user_id ? await User.findById(context.user_id) : null;
+            const user_id = getUserId(context)
+            const user = user_id ? await User.findById(user_id) : null;
             return user
         }
     },
     Mutation: {
         uploadFile: (obj, { file }) => processUpload(file),
-
 
         // uploadFile: async (root, { file }) => {
         //     const { stream, filename, mimetype, encoding } = await file;
@@ -103,7 +102,6 @@ export default {
         //     return { _id: uploadStream.id, filename, mimetype, encoding }
         // },
 
-
         addUser: async (_, args, context) => {
             try {
                 return await User.create(args);
@@ -113,32 +111,29 @@ export default {
         },
         login: async (root, { email, password }) => {
             const existingUser = await User.findOne({email});
-            const validPassword = await bcrypt.compare(password, existingUser.password);
 
             if (!existingUser) {
                 throw new Error('User not found')
             }
+            const validPassword = await bcrypt.compare(password, existingUser.password);
+
             if (!validPassword) {
                 throw new Error('Password not found')
             }
 
             existingUser.jwt = jwt.sign({ _id: existingUser._id }, process.env.TOKEN_SECRET);
-
-            return existingUser;
+            return existingUser
         },
         signup: async (root, { name, email, password }) => {
             const existingUser = await User.findOne({email});
             if (existingUser) {
-                throw new Error('Email already used');
+                throw new Error('Email already in use');
             }
 
             const hash = await bcrypt.hash(password, 10);
             const user = await User.create({ name: name, email: email, password: hash });
             user.jwt = await jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-
             return user
-
-
         }
 
     }

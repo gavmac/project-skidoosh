@@ -8,8 +8,7 @@ export default gql `
       id: ID!
       email: String
       password: String
-      jwt: String
-      
+      jwt: String 
     }
     
     type File {
@@ -19,16 +18,10 @@ export default gql `
         encoding: String!
     }
     
-    type AuthPayload {
-      token: String
-      user: User
-    }
-    
     type Query {
         currentUser: User
         getUsers: [User]
         getUpload: [File]
-       
     }
     
     type Mutation {

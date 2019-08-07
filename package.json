@@ -35,7 +35,8 @@
     "react-scripts": "3.0.1",
     "react-web-ar": "^1.0.0-beta2",
     "shortid": "^2.2.14",
-    "three": "0.87.1"
+    "three": "0.87.1",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "node -r esm src/server",

@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import schema from './graphql';
 import express from 'express';
-import path from 'path'
 import { ApolloServer } from 'apollo-server-express';
 
 dotenv.config({ silent: true })
@@ -16,6 +15,12 @@ mongoose.connection.once('open', () => console.log(`Connected to mongo at ${uri}
 // GraphQL: Schema
 const server = new ApolloServer({
     schema,
+
+    context: request => {
+        return {
+            ...request,
+        }
+    },
 
     playground: {
         endpoint: `http://localhost:${PORT}/graphql`,
