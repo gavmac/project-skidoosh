@@ -1,8 +1,4 @@
 
-## Available Scripts
-
-In the project directory, 
-
 ## To fire up the server
 
 npm start:server
