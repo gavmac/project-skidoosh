@@ -37,12 +37,6 @@ function Header () {
                         Project-Skidoosh
                     </Typography>
                     <nav>
-                        {/*<Link variant="button" color="textPrimary" href="/hiro" className={classes.link}>*/}
-                        {/*    Hiro*/}
-                        {/*</Link>*/}
-                        {/*<Link variant="button" color="textPrimary" href="/register" className={classes.link}>*/}
-                        {/*    Register*/}
-                        {/*</Link>*/}
                         <Link variant="button" color="textPrimary" href="/profile" className={classes.link}>
                             View AR profile
                         </Link>

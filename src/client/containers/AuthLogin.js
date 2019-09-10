@@ -38,6 +38,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
+// Im using Yup to help manage validations - FYI its awesome
+
 const UserSchema = Yup.object().shape({
     email: Yup.string()
         .email('Invalid email address')
@@ -55,6 +58,11 @@ const SUBMIT_LOGIN = gql`
 
 const AuthLogin = () => {
     const classes = useStyles();
+
+
+    // Yes yes... I agree In an ideal world handleSubmit should really only update the state of the component
+    // and this mutation should happen when a component lifecycle is triggered
+    // However why make something over complicated when it doesnt need to be, send it on!
 
     const handleSubmit = async (values, { setSubmitting, setErrors }) => {
         try {
@@ -86,7 +94,7 @@ const AuthLogin = () => {
                     onSubmit={handleSubmit}
                     validationSchema={UserSchema}
                 >
-                    {({values, handleChange, handleSubmit, errors, touched, isSubmitting}) => (
+                    {({ handleChange, handleSubmit, errors, touched }) => (
                         <form className={classes.form}>
                             <TextField
                                 error={errors.email}

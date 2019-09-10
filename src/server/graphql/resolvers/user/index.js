@@ -11,11 +11,13 @@ import { AuthenticationError } from 'apollo-server-express';
 const uploadDir = './uploads';
 const db = new lowdb(new FileSync('db.json'));
 
-// Seed an empty DB
+// Seed an empty DBs
 db.defaults({ uploads: [] }).write()
 
 // Ensure upload directory exists
 mkdirp.sync(uploadDir)
+
+// This file upload stuff needs to be put in a separate directory
 
 const storeUpload = async ({ stream, filename }) => {
     const path = `${uploadDir}/image.jpg`;
@@ -58,6 +60,8 @@ const processUpload = async upload => {
     return recordFile({ id, filename, mimetype, encoding, path });
 };
 
+
+// Can we authenticate the user ????
 
 const getUserId = context => {
     const authorization = context.req.headers.authorization || ''

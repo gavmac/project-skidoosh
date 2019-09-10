@@ -52,9 +52,10 @@ const DashBoard = () => {
             console.log(status, meta, file)
         }
 
+    // Only working currently on a local environment, I'd like to do work on the backend and
+    // send this to AWS
+
         const handleSubmit = async (files) => {
-            console.log('yo');
-            console.log(files[0].file);
             try {
                 await client.mutate({
                     variables: files[0],
